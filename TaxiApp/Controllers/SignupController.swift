@@ -12,7 +12,6 @@ import GeoFire
 
 class SignupController: UIViewController {
 
-    
     // MARK: - Properties
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -20,16 +19,16 @@ class SignupController: UIViewController {
         label.font = UIFont(name: "Avenir-Light", size: 36)
         return label
     }()
-    private lazy var emailContainerView : UIView = {
+    private lazy var emailContainerView: UIView = {
         return UIView().inputContainer(withTextField: emailTextField, image: #imageLiteral(resourceName: "ic_mail_outline_white_2x"))
     }()
-    private lazy var passwordContainerView : UIView = {
+    private lazy var passwordContainerView: UIView = {
         return UIView().inputContainer(withTextField: passwordTextField, image: #imageLiteral(resourceName: "ic_lock_outline_white_2x"))
     }()
-    private lazy var fullNameContainerView : UIView = {
+    private lazy var fullNameContainerView: UIView = {
         return UIView().inputContainer(withTextField: fullNameTextField, image: #imageLiteral(resourceName: "ic_account_box_white_2x"))
     }()
-    private lazy var accountTypeContainerView : UIView = {
+    private lazy var accountTypeContainerView: UIView = {
         return UIView().inputContainer(withSegmentedControl: accountTypeSegmentedControl, image: #imageLiteral(resourceName: "ic_account_box_white_2x"))
     }()
     private let emailTextField: UITextField = {
@@ -54,25 +53,27 @@ class SignupController: UIViewController {
         button.addTarget(self, action: #selector(handleSignup), for: .touchUpInside)
         return button
     }()
-    private let alreadyHaveAccountButton:UIButton = {
-        let button = UIButton().customAttributedNavigationButton(withTitle: "Already have an account? ", message: "Sign In", self, action: #selector(showSignIn))
+    private let alreadyHaveAccountButton: UIButton = {
+        let button = UIButton()
+                    .customAttributedNavigationButton(withTitle: "Already have an account? ",
+                    message: "Sign In", self, action: #selector(showSignIn))
         return button
     }()
-    
+
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
     }
-    
+
     // MARK: - Selectors
-    
+
     @objc func showSignIn() {
         navigationController?.popViewController(animated: true)
     }
-    
-    @objc func handleSignup(){
+
+    @objc func handleSignup() {
         guard let email = emailTextField.text else {
             return
         }
@@ -91,13 +92,13 @@ class SignupController: UIViewController {
             guard let uid = result?.user.uid else {
                 return
             }
-            
-            let values = ["email": email, "fullname": fullName, "accountType": accountType] as [String:Any]
-            
+
+            let values = ["email": email, "fullname": fullName, "accountType": accountType] as [String: Any]
+
             if accountType == 1 { // Driver
-                let geoFire = GeoFire(firebaseRef: REF_DRIVER_LOCATIONS)
+                let geoFire = GeoFire(firebaseRef: kRefDriverLocations)
                 guard let location = LocationHandler.shared.locationManager.location else { return }
-                geoFire.setLocation(location, forKey: uid) { (error) in
+                geoFire.setLocation(location, forKey: uid) { (_) in
                     self.registerUserAndShowHome(uid: uid, values: values)
                 }
             } else {
@@ -105,9 +106,9 @@ class SignupController: UIViewController {
             }
         }
     }
-    
-    func registerUserAndShowHome(uid: String, values: [String:Any]){
-        REF_USERS.child(uid).updateChildValues(values) { [weak self] (error, dbRef) in
+
+    func registerUserAndShowHome(uid: String, values: [String: Any]) {
+        kRefUsers.child(uid).updateChildValues(values) { [weak self] (error, _) in
             if let error = error {
                 debugPrint("Failed in saving data with error \(error)")
             } else {
@@ -117,36 +118,41 @@ class SignupController: UIViewController {
             }
         }
     }
-    
-    @objc func bgViewTapAction(_ sender: UITapGestureRecognizer){
+
+    @objc func bgViewTapAction(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
 
     // MARK: - Helper Functions
     func configureUI() {
         configureNavigationBar()
-        
+
         view.backgroundColor = .backgroundColor
-        
+
         self.view.addSubview(titleLabel)
-        titleLabel.anchor(top:view.safeAreaLayoutGuide.topAnchor)
+        titleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor)
         titleLabel.centerX(inView: view)
-        
-        let entryStack = UIStackView(arrangedSubviews: [fullNameContainerView,emailContainerView,passwordContainerView,accountTypeContainerView,loginButton])
+
+        let entryStack = UIStackView(arrangedSubviews: [fullNameContainerView,
+                                                        emailContainerView,
+                                                        passwordContainerView,
+                                                        accountTypeContainerView,
+                                                        loginButton])
         entryStack.axis = .vertical
         entryStack.alignment = .fill
         entryStack.spacing = 24
         view.addSubview(entryStack)
-        entryStack.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 16, paddingRight: 16)
-        
+        entryStack.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor,
+                          paddingTop: 40, paddingLeft: 16, paddingRight: 16)
+
         view.addSubview(alreadyHaveAccountButton)
         alreadyHaveAccountButton.centerX(inView: view)
         alreadyHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, paddingBottom: 8, height: 32)
-        
+
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bgViewTapAction(_ :))))
     }
-    
-    func configureNavigationBar(){
+
+    func configureNavigationBar() {
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.barStyle = .black
     }

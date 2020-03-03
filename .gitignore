@@ -1067,3 +1067,7 @@ Pods/Target Support Files/PromisesObjC/PromisesObjC.modulemap
 Pods/Target Support Files/PromisesObjC/PromisesObjC.xcconfig
 TaxiApp.xcodeproj/xcuserdata/sanjaypathak.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
 TaxiApp.xcworkspace/xcuserdata/sanjaypathak.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+Pods/Pods.xcodeproj/xcuserdata/sanjaypathak.xcuserdatad/xcschemes/SwiftLint.xcscheme
+Pods/SwiftLint/LICENSE
+Pods/SwiftLint/swiftlint
+Pods/Target Support Files/SwiftLint/SwiftLint.xcconfig

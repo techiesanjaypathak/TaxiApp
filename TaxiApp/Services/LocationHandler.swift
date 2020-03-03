@@ -9,27 +9,27 @@
 import CoreLocation
 
 class LocationHandler: NSObject, CLLocationManagerDelegate {
-    
+
     static let shared = LocationHandler()
     var locationManager: CLLocationManager!
-    
+
     private override init() {
         super.init()
         locationManager = CLLocationManager()
         locationManager.delegate = self
         enableLocationServices()
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
             locationManager.requestAlwaysAuthorization()
         }
     }
-    
+
     // MARK: - Location Services
-    
-    func enableLocationServices(){
-        
+
+    func enableLocationServices() {
+
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
             debugPrint("Not determined")

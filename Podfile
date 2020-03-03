@@ -13,4 +13,6 @@ target 'TaxiApp' do
     pod 'Firebase/Auth'
     pod 'Firebase/Storage'
     pod 'GeoFire', '>= 1.1'
+    
+    pod 'SwiftLint'
 end

@@ -25,6 +25,8 @@
 		A7F54E942405298100033827 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F54E932405298100033827 /* User.swift */; };
 		A7F54E96240537A800033827 /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F54E95240537A800033827 /* LocationHandler.swift */; };
 		A7F54E982406484500033827 /* DriverAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F54E972406484500033827 /* DriverAnnotation.swift */; };
+		A7F54E9C240D151C00033827 /* RideActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F54E9B240D151C00033827 /* RideActionView.swift */; };
+		A7F54E9F240E2EA900033827 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A7F54E9E240E2EA800033827 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		A7F54E932405298100033827 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A7F54E95240537A800033827 /* LocationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHandler.swift; sourceTree = "<group>"; };
 		A7F54E972406484500033827 /* DriverAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverAnnotation.swift; sourceTree = "<group>"; };
+		A7F54E9B240D151C00033827 /* RideActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideActionView.swift; sourceTree = "<group>"; };
+		A7F54E9E240E2EA800033827 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		DA17612BDA6159D04001C96B /* Pods-TaxiApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiApp.debug.xcconfig"; path = "Target Support Files/Pods-TaxiApp/Pods-TaxiApp.debug.xcconfig"; sourceTree = "<group>"; };
 		FCE35360C4E12A1D16AF6FB4 /* Pods-TaxiApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiApp.release.xcconfig"; path = "Target Support Files/Pods-TaxiApp/Pods-TaxiApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +89,7 @@
 		A72BE36D23F5169B00B84543 /* TaxiApp */ = {
 			isa = PBXGroup;
 			children = (
+				A7F54E9E240E2EA800033827 /* .swiftlint.yml */,
 				A74923CB23F5C26900D60CBC /* GoogleService-Info.plist */,
 				A72BE38723F5171B00B84543 /* Models */,
 				A72BE38623F5171A00B84543 /* Views */,
@@ -135,6 +140,7 @@
 				A74923D523F71A2700D60CBC /* LocationInputView.swift */,
 				A7E4B2C623F8AAE0007089F3 /* LocationTableViewCell.swift */,
 				A7F54E972406484500033827 /* DriverAnnotation.swift */,
+				A7F54E9B240D151C00033827 /* RideActionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -171,6 +177,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A72BE37F23F5169E00B84543 /* Build configuration list for PBXNativeTarget "TaxiApp" */;
 			buildPhases = (
+				A7F54E9D240E280500033827 /* Swiftlint */,
 				335619518589B2722B94570D /* [CP] Check Pods Manifest.lock */,
 				A72BE36723F5169B00B84543 /* Sources */,
 				A72BE36823F5169B00B84543 /* Frameworks */,
@@ -224,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7F54E9F240E2EA900033827 /* .swiftlint.yml in Resources */,
 				A72BE37B23F5169E00B84543 /* LaunchScreen.storyboard in Resources */,
 				A72BE37823F5169E00B84543 /* Assets.xcassets in Resources */,
 				A74923CC23F5C26900D60CBC /* GoogleService-Info.plist in Resources */,
@@ -272,6 +280,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TaxiApp/Pods-TaxiApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A7F54E9D240E280500033827 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -289,6 +315,7 @@
 				A7E4B2C723F8AAE0007089F3 /* LocationTableViewCell.swift in Sources */,
 				A7F54E96240537A800033827 /* LocationHandler.swift in Sources */,
 				A74923C823F57B2C00D60CBC /* SignupController.swift in Sources */,
+				A7F54E9C240D151C00033827 /* RideActionView.swift in Sources */,
 				A7F54E942405298100033827 /* User.swift in Sources */,
 				A72D718623FBED1900A731B5 /* Service.swift in Sources */,
 				A74923D423F6A6EE00D60CBC /* LocationInputActivationView.swift in Sources */,
