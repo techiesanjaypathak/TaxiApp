@@ -223,7 +223,6 @@ extension MKPlacemark {
 
 extension MKMapView {
     func zoomToFit(annotations: [MKAnnotation]) {
-        let thisisaverylongvariablenametocheckhowtousehoundinaprojectfortesting = "Sample"
         var zoomRect = MKMapRect.null
         annotations.forEach { (annotation) in
             let annotationPoint = MKMapPoint(annotation.coordinate)
