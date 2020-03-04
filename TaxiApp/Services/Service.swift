@@ -13,6 +13,7 @@ import GeoFire
 let kDbRef = Database.database().reference()
 let kRefUsers = kDbRef.child("Users")
 let kRefDriverLocations = kDbRef.child("DriverLocations")
+let kRefTrips = kDbRef.child("Trips")
 
 class Service {
 
@@ -37,5 +38,18 @@ class Service {
                 }
             })
         }
+    }
+
+    func uploadRide(startCoordinates: CLLocationCoordinate2D,
+                    destinationCoordinates: CLLocationCoordinate2D,
+                    completion: @escaping (Error?, DatabaseReference) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let startCoordinates = [startCoordinates.latitude, startCoordinates.longitude]
+        let destinationCoordinates = [destinationCoordinates.latitude, destinationCoordinates.longitude]
+        let values = [  "startCoordinates": startCoordinates,
+                        "destinationCoordinates": destinationCoordinates,
+                        "tripStatus": TripStatus.requested.rawValue
+            ] as [String: Any]
+        kRefTrips.child(uid).updateChildValues(values, withCompletionBlock: completion)
     }
 }

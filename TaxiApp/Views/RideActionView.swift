@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 protocol RideActionDelegate: class {
-    func takeRide()
+    func takeRide(_ sender: RideActionView)
 }
 
 class RideActionView: UIView {
@@ -19,10 +19,10 @@ class RideActionView: UIView {
 
     weak var delegate: RideActionDelegate?
 
-    var placemark: MKPlacemark? {
+    var destinationPlacemark: MKPlacemark? {
         didSet {
-            locationName.text = placemark?.name
-            locationAddress.text = placemark?.shortAddress
+            locationName.text = destinationPlacemark?.name
+            locationAddress.text = destinationPlacemark?.shortAddress
         }
     }
     // MARK: - Private Properties
@@ -125,6 +125,6 @@ class RideActionView: UIView {
     // MARK: - Selectors
 
     @objc func rideAction() {
-        delegate?.takeRide()
+        delegate?.takeRide(self)
     }
 }

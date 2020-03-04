@@ -9,11 +9,16 @@
 import Foundation
 import CoreLocation
 
+enum AccountType: Int {
+    case passenger
+    case driver
+}
+
 struct User {
     let uid: String
     let fullname: String
     let email: String
-    let accountType: Int
+    let accountType: AccountType
     var location: CLLocation?
 }
 
@@ -22,6 +27,6 @@ extension User {
         self.uid = uid
         self.fullname = dictionary["fullname"] as? String ?? ""
         self.email = dictionary["email"] as? String ?? ""
-        self.accountType = dictionary["accountType"] as? Int ?? 0
+        self.accountType = AccountType(rawValue: dictionary["accountType"] as? Int ?? 0) ?? AccountType.passenger
     }
 }

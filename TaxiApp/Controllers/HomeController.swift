@@ -49,6 +49,10 @@ class HomeController: UIViewController {
     private var user: User? {
         didSet {
             locationInputView.user = user
+            if user?.accountType == .passenger {
+                fetchDrivers()
+                showLocationActivationView()
+            }
         }
     }
     private var searchResults: [MKPlacemark] = []
@@ -111,7 +115,6 @@ class HomeController: UIViewController {
     func configure() {
         configureUI()
         fetchUserData()
-        fetchDrivers()
     }
 
     func configureUI() {
@@ -119,7 +122,6 @@ class HomeController: UIViewController {
         view.addSubview(signOutButton)
         signOutButton.anchor(bottom: view.bottomAnchor, right: view.rightAnchor, paddingBottom: 40, paddingRight: 16)
         showActionButton()
-        showLocationActivationView()
     }
 
     func displayRideActionView(_ shouldShow: Bool) {
@@ -288,7 +290,7 @@ extension HomeController: UITableViewDataSource, UITableViewDelegate {
 
             removeLocationInputView { _ in
                 self.rideActionView.delegate = self
-                self.rideActionView.placemark = selectedPlacemark
+                self.rideActionView.destinationPlacemark = selectedPlacemark
                 self.displayRideActionView(true)
 
                 let pointAnnotation = MKPointAnnotation()
@@ -424,7 +426,17 @@ extension HomeController {
 }
 
 extension HomeController: RideActionDelegate {
-    func takeRide() {
-        print("Confirm Ride")
+    func takeRide(_ sender: RideActionView) {
+        guard let startCoordinate = locationManager?.location?.coordinate else { return }
+        guard let destinationCoordinate = sender.destinationPlacemark?.coordinate else { return }
+        Service.shared.uploadRide(startCoordinates: startCoordinate,
+                                  destinationCoordinates: destinationCoordinate,
+                                  completion: { (err, _) in
+            if let error = err {
+                print("DEBUG: Error saving trip \(error)")
+            } else {
+                print("DEBUG: Trip details saved successfully.")
+            }
+        })
     }
 }

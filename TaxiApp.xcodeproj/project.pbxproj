@@ -28,6 +28,7 @@
 		A7F54E9C240D151C00033827 /* RideActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F54E9B240D151C00033827 /* RideActionView.swift */; };
 		A7F54E9F240E2EA900033827 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A7F54E9E240E2EA800033827 /* .swiftlint.yml */; };
 		A7F54EA1240E8D3000033827 /* .hound.yml in Resources */ = {isa = PBXBuildFile; fileRef = A7F54EA0240E8D2F00033827 /* .hound.yml */; };
+		A7F54EA3240F7F6D00033827 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F54EA2240F7F6D00033827 /* Trip.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		A7F54E9B240D151C00033827 /* RideActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideActionView.swift; sourceTree = "<group>"; };
 		A7F54E9E240E2EA800033827 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		A7F54EA0240E8D2F00033827 /* .hound.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .hound.yml; sourceTree = SOURCE_ROOT; };
+		A7F54EA2240F7F6D00033827 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		DA17612BDA6159D04001C96B /* Pods-TaxiApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiApp.debug.xcconfig"; path = "Target Support Files/Pods-TaxiApp/Pods-TaxiApp.debug.xcconfig"; sourceTree = "<group>"; };
 		FCE35360C4E12A1D16AF6FB4 /* Pods-TaxiApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiApp.release.xcconfig"; path = "Target Support Files/Pods-TaxiApp/Pods-TaxiApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				A7F54E932405298100033827 /* User.swift */,
+				A7F54EA2240F7F6D00033827 /* Trip.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				A74923CA23F5AB3B00D60CBC /* AuthButton.swift in Sources */,
 				A74923CE23F5D53100D60CBC /* HomeController.swift in Sources */,
 				A74923D623F71A2700D60CBC /* LocationInputView.swift in Sources */,
+				A7F54EA3240F7F6D00033827 /* Trip.swift in Sources */,
 				A7F54E982406484500033827 /* DriverAnnotation.swift in Sources */,
 				A72BE36F23F5169B00B84543 /* AppDelegate.swift in Sources */,
 				A72BE37123F5169B00B84543 /* SceneDelegate.swift in Sources */,
